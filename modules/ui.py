@@ -1714,7 +1714,7 @@ def create_ui():
         gr.HTML(footer, elem_id="custom-footer")
         onload_scripts = """
             async function queryUseTimes() {
-                const response = await fetch('http://www.zhenqimiao.cloud:8082/sys/user/getUseCount', 
+                const response = await fetch('http://www.zhenqimiao.cloud/sys/user/getUseCount', 
                     {   
                         mode: 'cors',
                         credentials: 'include', 
