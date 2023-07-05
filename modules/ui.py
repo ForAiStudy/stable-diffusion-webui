@@ -1658,18 +1658,26 @@ def create_ui():
         (modelmerger_interface, "Checkpoint Merger", "modelmerger"),
         (train_interface, "Train", "train"),
     ]
-
+    # 默认隐藏 settings extensions
     interfaces += script_callbacks.ui_tabs_callback()
     interfaces += [(settings_interface, "Settings", "settings")]
 
-    extensions_interface = ui_extensions.create_ui()
-    interfaces += [(extensions_interface, "Extensions", "extensions")]
+    # extensions_interface = ui_extensions.create_ui()
+    # interfaces += [(extensions_interface, "Extensions", "extensions")]
 
     shared.tab_names = []
     for _interface, label, _ifid in interfaces:
         shared.tab_names.append(label)
 
-    with gr.Blocks(theme=shared.gradio_theme, analytics_enabled=False, title="Stable Diffusion") as demo:
+    css = """
+        .tabs {min-height: calc(100vh - 380px) !important}
+    """
+
+    with gr.Blocks(theme=shared.gradio_theme, analytics_enabled=False, title="真奇妙", css=css) as demo:
+       
+        header = shared.html("header.html")
+        gr.HTML(header, elem_id="header")
+       
         with gr.Row(elem_id="quicksettings", variant="compact"):
             for _i, k, _item in sorted(quicksettings_list, key=lambda x: quicksettings_names.get(x[1], x[0])):
                 component = create_setting_component(k, is_quicksettings=True)
@@ -1700,9 +1708,20 @@ def create_ui():
         if os.path.exists(os.path.join(script_path, "notification.mp3")):
             gr.Audio(interactive=False, value=os.path.join(script_path, "notification.mp3"), elem_id="audio_notification", visible=False)
 
-        footer = shared.html("footer.html")
-        footer = footer.format(versions=versions_html())
-        gr.HTML(footer, elem_id="footer")
+
+        footer = shared.html("custom-footer.html")
+        # footer = footer.format(versions=versions_html(), api_docs="/docs" if shared.cmd_opts.api else "https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/API")
+        gr.HTML(footer, elem_id="custom-footer")
+        onload_scripts = """
+            async function queryUseTimes() {
+                const response = await fetch('http://www.zhenqimiao.cloud:8082/sys/user/getUseCount', 
+                    {   
+                        mode: 'cors',
+                        credentials: 'include', 
+                });
+                const result = response.json();
+            }
+        """
 
         text_settings = gr.Textbox(elem_id="settings_json", value=lambda: opts.dumpjson(), visible=False)
         settings_submit.click(
@@ -1725,7 +1744,7 @@ def create_ui():
 
         update_image_cfg_scale_visibility = lambda: gr.update(visible=shared.sd_model and shared.sd_model.cond_stage_key == "edit")
         text_settings.change(fn=update_image_cfg_scale_visibility, inputs=[], outputs=[image_cfg_scale])
-        demo.load(fn=update_image_cfg_scale_visibility, inputs=[], outputs=[image_cfg_scale])
+        demo.load(fn=update_image_cfg_scale_visibility, inputs=[], outputs=[image_cfg_scale], _js=onload_scripts)
 
         button_set_checkpoint = gr.Button('Change checkpoint', elem_id='change_checkpoint', visible=False)
         button_set_checkpoint.click(

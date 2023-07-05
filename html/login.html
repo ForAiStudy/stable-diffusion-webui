@@ -1,0 +1,234 @@
+<html>
+
+<head>
+    <title>真奇妙</title>
+</head>
+
+<style>
+    body {
+        background-color: #FFF9F6;
+    }
+
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: calc(100vh - 130px);
+    }
+
+    .logo {
+        width: 230px;
+        margin-bottom: 67px;
+    }
+
+    .login-form-container {
+        width: 538px;
+        background: #FFFFFF;
+        border-radius: 29px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 63px;
+        padding-bottom: 75px;
+    }
+
+    .welcome {
+        font-size: 18px;
+        color: #291409;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .input-tip {
+        font-size: 12px;
+        color: rgba(41, 20, 9, 0.60);
+        text-align: center;
+        margin-bottom: 33px;
+    }
+
+    .input-container {
+        width: 273px;
+        height: 32px;
+        background: #FFFFFF;
+        border: 1px solid #D9D9D9;
+        border-radius: 6px;
+        padding-left: 8px;
+        padding-right: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .input-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+    }
+
+    .login-input {
+        outline-style: none;
+        border: none;
+        line-height: 16px;
+        height: 22px;
+    }
+
+    .login-input::placeholder {
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.25);
+        line-height: 22px;
+    }
+
+    .login-btn {
+        width: 273px;
+        height: 32px;
+        background: #EE600F;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 32px;
+        cursor: pointer;
+    }
+</style>
+
+<style>
+    .custom-footer-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #FFFFFF;
+    }
+
+    .custom-footer {
+        height: 130px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 1200px;
+    }
+
+    .qrs {
+        display: flex;
+        flex: row;
+    }
+
+    .qr-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .qr-img {
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
+    }
+
+    .qr-desc {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .copyright {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+</style>
+
+
+
+<body style="margin: 0">
+    <div class="login-container">
+        <img class="logo" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/logo_black.png" />
+
+        <div class="login-form-container">
+            <span class="welcome">欢迎你</span>
+            <span class="input-tip">请输入以下信息，即可登录你的账号</span>
+
+
+            <div class="input-container" style="margin-bottom: 17px;">
+                <img class="input-icon" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/avatar.png" />
+                <input placeholder="请输入账号" class="login-input" id="username" />
+            </div>
+
+            <div class="input-container" style="margin-bottom: 25px;">
+                <img class="input-icon" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/lock.png" />
+                <input placeholder="请输入密码" class="login-input" id="password" />
+            </div>
+
+            <div class="login-btn" id="loginbtn">
+                登录
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-footer-container">
+        <div class="custom-footer">
+            <div class="qrs">
+                <div class="qr-container" style="margin-right: 60px">
+                    <img class="qr-img" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/vxqr.jpeg" />
+                    <div class="qr-desc">
+                        <span>小红书扫一扫</span>
+                        <span>联系我们</span>
+                    </div>
+                </div>
+
+                <div class="qr-container">
+                    <img class="qr-img" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/vxqr.jpeg" />
+                    <div class="qr-desc">
+                        <span>微信扫一扫</span>
+                        <span>联系我们</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <div>
+                    <span style="font-size: 13px;color: #6d6d6d">©2023</span>
+                    <span style="font-size: 12px;color: #6d6d6d">真奇妙</span>
+                </div>
+
+                <div>
+                    <span style="font-size: 12px;color: #6d6d6d">浙ICP备2023016465号</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</body>
+
+<script>
+    async function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const response = await fetch('http://www.zhenqimiao.cloud:8082/sys/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        });
+        const result = await response.json();
+        console.log('result', result)
+        if (response.status === 200 && result?.data?.access_token) {
+            window.location.replace('http://www.zhenqimiao.cloud')
+        }
+    }
+    const loginBtn = document.getElementById("loginbtn");
+    loginBtn.addEventListener("click", login);
+</script>
+
+</html>

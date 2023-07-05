@@ -12,6 +12,7 @@ from threading import Thread
 from typing import Iterable
 
 from fastapi import FastAPI, Response
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from packaging import version
@@ -360,6 +361,9 @@ def stop_route(request):
     shared.state.server_command = "stop"
     return Response("Stopping.")
 
+def login_route(request):
+    html_content = shared.html("login.html")
+    return HTMLResponse(content=html_content, status_code=200)
 
 def webui():
     launch_api = cmd_opts.api
@@ -405,6 +409,9 @@ def webui():
             prevent_thread_lock=True,
             allowed_paths=cmd_opts.gradio_allowed_path,
         )
+
+        app.add_route("/login", login_route, methods=["GET"])
+
         if cmd_opts.add_stop_route:
             app.add_route("/_stop", stop_route, methods=["POST"])
 

@@ -1,0 +1,180 @@
+<style>
+    .custom-footer-container {
+        margin-bottom: -16px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 60px;
+    }
+
+    @media (min-width: 768px) {
+        .custom-footer-container {
+            display: flex;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .custom-footer-container {
+            display: none;
+        }
+    }
+
+    .custom-footer {
+        height: 130px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #bfdbfe80;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 1200px;
+    }
+
+    .qrs {
+        display: flex;
+        flex: row;
+    }
+
+    .qr-container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .qr-img {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+    }
+
+    .qr-desc {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .copyright {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .h5-custom-footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+        .h5-custom-footer {
+            display: none;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .h5-custom-footer {
+            display: flex;
+        }
+    }
+
+    .h5-qr {
+        display: flex;
+        flex-direction: row;
+        background-color: rgb(60 70 78);
+        align-items: center;
+        height: 120px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+
+    .h5-qr-img {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+    }
+
+    .h5-qr-desc {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 80px;
+        box-sizing: border-box;
+    }
+
+    .h5-copyright {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 20px;
+        border-top: 1px solid #bfdbfe80;
+        padding-top: 20px;
+    }
+</style>
+
+<div class="custom-footer-container">
+    <div class="custom-footer">
+        <div class="qrs">
+            <div class="qr-container" style="margin-right: 60px">
+                <img class="qr-img" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/vxqr.jpeg" />
+                <div class="qr-desc">
+                    <span>小红书扫一扫</span>
+                    <span>联系我们</span>
+                </div>
+            </div>
+
+            <div class="qr-container">
+                <img class="qr-img" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/vxqr.jpeg" />
+                <div class="qr-desc">
+                    <span>微信扫一扫</span>
+                    <span>联系我们</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <div>
+                <span style="font-size: 12px;color: #bfdbfe80">©2023</span>
+                <span style="font-size: 12px;color: #bfdbfe80">真奇妙</span>
+            </div>
+
+            <div>
+                <span style="font-size: 12px;color: #bfdbfe80">浙ICP备2023016465号</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="h5-custom-footer">
+    <div class="h5-qr">
+        <img class="h5-qr-img" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/vxqr.jpeg" />
+        <div class="h5-qr-desc">
+            <span>小红书扫一扫</span>
+            <span>联系我们</span>
+        </div>
+    </div>
+
+    <div class="h5-qr">
+        <img class="h5-qr-img" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/vxqr.jpeg" />
+        <div class="h5-qr-desc">
+            <span>小红书扫一扫</span>
+            <span>联系我们</span>
+        </div>
+    </div>
+
+    <div class="h5-copyright">
+        <div style="text-align: center;">
+            <span style="font-size: 12px;color: #bfdbfe80">©2023</span>
+            <span style="font-size: 12px;color: #bfdbfe80">真奇妙</span>
+        </div>
+
+        <div style="text-align: center;">
+            <span style="font-size: 12px;color: #bfdbfe80">浙ICP备2023016465号</span>
+        </div>
+    </div>
+
+</div>

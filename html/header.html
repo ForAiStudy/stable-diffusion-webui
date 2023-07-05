@@ -1,0 +1,187 @@
+<style>
+    .pc-header {
+        height: 80px;
+        display: flex;
+        flex-direction: row;
+        padding-left: 20px;
+        padding-right: 20px;
+        align-items: center;
+        justify-content: space-between;
+        background-color: black;
+        margin-left: -16px;
+        margin-right: -16px;
+        margin-top: -16px;
+    }
+
+    @media (min-width: 768px) {
+        .pc-header {
+            display: flex;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .pc-header {
+            display: none;
+        }
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    .divider {
+        width: 2px;
+        height: 14px;
+        margin-left: 8px;
+        margin-right: 10px;
+        background-color: #ffffff;
+    }
+
+    .pc-header span {
+        color: #ffffff;
+    }
+
+    .logo-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .operations {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 220px;
+    }
+
+
+    @media (min-width: 768px) {
+        .h5-header {
+            display: none;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .h5-header {
+            display: block;
+        }
+    }
+
+    /* h5 样式 */
+    .h5-header {
+        margin-left: -16px;
+        margin-right: -16px;
+        margin-top: -16px;
+
+    }
+
+    .h5-logo-container {
+        display: flex;
+        flex-direction: row;
+        height: 80px;
+        background-color: black;
+        align-items: center;
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .h5-operations {
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 20px;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+
+    .h5-operation {
+        height: 60px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ffffff;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #FF7500;
+        margin-right: 10px;
+    }
+
+    .use-times {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 40px;
+        padding-left: 8px;
+        margin-top: 20px;
+        margin-left: 16px;
+        margin-right: 16px;
+        border: 1px solid #ffffff;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="pc-header">
+    <div class="logo-container">
+        <img class="logo" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/logo_white.png">
+        <div class="divider"></div>
+        <span style="color: #ffffff">stablediffuse云平台</span>
+    </div>
+
+
+    <div class="operations">
+        <span style="color: #ffffff">使用说明书</span>
+        <span style="color: #ffffff">作画记录</span>
+        <span style="color: #ffffff" class="">可制作</span>
+    </div>
+</div>
+
+<div class="h5-header">
+    <div class="h5-logo-container">
+        <img class="logo" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/logo_white.png">
+        <div class="divider"></div>
+        <span style="color: #ffffff">stablediffuse云平台</span>
+    </div>
+
+    <div class="h5-operations">
+        <div class="h5-operation">
+            <div style="margin-right: 8px;" p-id="2609">
+                <svg class="icon"
+                    style="width: 1.2em;height: 1.2em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                    viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2611">
+                    <path
+                        d="M512 938.666667c235.648 0 426.666667-191.018667 426.666667-426.666667S747.648 85.333333 512 85.333333 85.333333 276.352 85.333333 512s191.018667 426.666667 426.666667 426.666667z m0 85.333333C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z m42.666667-486.869333V298.538667C554.666667 275.328 535.552 256 512 256c-23.722667 0-42.666667 19.029333-42.666667 42.538667v256.256a41.984 41.984 0 0 0 12.202667 29.866666l121.258667 121.258667a42.368 42.368 0 0 0 60.032-0.298667 42.666667 42.666667 0 0 0 0.298666-60.032L554.666667 537.130667z"
+                        fill="#ffffff" p-id="2612"></path>
+                </svg>
+            </div>
+            <span>作画记录</span>
+        </div>
+        <div class="h5-operation">
+            <div style="margin-right: 8px;" p-id="2921">
+                <svg class="icon"
+                    style="width: 1.2em;height: 1.2em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                    viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2923">
+                    <path
+                        d="M512 938.666667c235.648 0 426.666667-191.018667 426.666667-426.666667S747.648 85.333333 512 85.333333 85.333333 276.352 85.333333 512s191.018667 426.666667 426.666667 426.666667z m0 85.333333C229.248 1024 0 794.752 0 512S229.248 0 512 0s512 229.248 512 512-229.248 512-512 512z"
+                        fill="#ffffff" p-id="2924"></path>
+                    <path
+                        d="M520.96 232.106667c-62.293333 0-111.786667 17.92-147.626667 54.613333-36.693333 35.84-54.613333 84.48-54.613333 146.773333h90.453333c0-37.546667 7.68-67.413333 23.04-87.893333 17.066667-23.893333 45.226667-35.84 83.626667-35.84 30.72 0 54.613333 8.533333 71.68 25.6 16.213333 17.066667 24.746667 40.106667 24.746667 69.973333 0 22.186667-7.68 42.666667-23.04 62.293334l-14.506667 16.213333c-52.906667 46.933333-85.333333 81.92-97.28 105.813333-11.093333 22.186667-16.213333 49.493333-16.213333 81.066667v14.506667h91.306666v-14.506667c0-21.333333 4.266667-40.106667 13.653334-57.173333 7.68-15.36 19.626667-29.866667 34.986666-43.52 40.96-34.986667 64.853333-57.173333 72.533334-66.56 20.48-27.306667 31.573333-62.293333 31.573333-104.106667 0-51.2-17.066667-92.16-50.346667-122.026667-34.133333-30.72-78.506667-45.226667-133.973333-45.226666z m-14.506667 499.2c-17.92 0-32.426667 5.12-43.52 17.066666-12.8 11.093333-18.773333 25.6-18.773333 43.52 0 17.066667 5.973333 31.573333 18.773333 43.52 11.093333 11.946667 25.6 17.92 43.52 17.92 17.066667 0 32.426667-5.973333 45.226667-17.066666 11.946667-11.946667 17.92-26.453333 17.92-44.373334 0-17.92-5.973333-32.426667-17.92-43.52-11.946667-11.946667-27.306667-17.066667-45.226667-17.066666z"
+                        fill="#ffffff" p-id="2925"></path>
+                </svg>
+            </div>
+            <span>使用说明书</span>
+        </div>
+    </div>
+
+    <div class="use-times">
+        <div class="dot"></div>
+        <span>可制作</span>
+    </div>
+</div>
