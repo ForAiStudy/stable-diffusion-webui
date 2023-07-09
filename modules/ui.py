@@ -1713,23 +1713,24 @@ def create_ui():
         # footer = footer.format(versions=versions_html(), api_docs="/docs" if shared.cmd_opts.api else "https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/API")
         gr.HTML(footer, elem_id="custom-footer")
         onload_scripts = """
-            async function queryUseTimes() {
-                const response = await fetch('http://www.zhenqimiao.cloud/sys/user/getUseCount', 
-                    {   
-                        mode: 'cors',
-                        credentials: 'include', 
-                });
-                try {
-                    const result = response.json();
-                    const { totalCount, usedCount } = result.data;
-                    document.getElementById('usedCount').innerHTML = `${usedCount}`;
-                    document.getElementById('totalCount').innerHTML = `${totalCount}`;
-                } catch (error) {
-                    console.error(error);
+                function queryUseTimes() {
+                    setInterval(async function() {
+                        const response = await fetch('/sys/user/getUseCount', 
+                            {   
+                                mode: 'cors',
+                                credentials: 'include', 
+                        });
+                        try {
+                            const result = await response.json();
+                            const { totalCount, usedCount } = result.data;
+                            document.getElementById('usedCount').innerHTML = `${usedCount}`;
+                            document.getElementById('totalCount').innerHTML = `${totalCount}`;
+                        } catch (error) {
+                            console.error(error);
+                        }
+                    }, 2000); // 每2秒执行一次
                 }
-                
-            }
-        """
+            """
 
         text_settings = gr.Textbox(elem_id="settings_json", value=lambda: opts.dumpjson(), visible=False)
         settings_submit.click(
