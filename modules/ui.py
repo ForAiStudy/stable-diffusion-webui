@@ -1721,7 +1721,7 @@ def create_ui():
                 });
                 try {
                     const result = response.json();
-                    const { totalCount, usedCount } = result;
+                    const { totalCount, usedCount } = result.data;
                     document.getElementById('usedCount').innerHTML = `${usedCount}`;
                     document.getElementById('totalCount').innerHTML = `${totalCount}`;
                 } catch (error) {
