@@ -144,8 +144,6 @@
     }
 </style>
 
-
-
 <body style="margin: 0">
     <div class="login-container">
         <img class="logo" src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/logo_black.png" />
@@ -206,6 +204,7 @@
 
     </div>
 </body>
+<script src="https://sharerare.oss-cn-hangzhou.aliyuncs.com/sd/vanilla-toast.min.js"></script>
 
 <script>
     async function login() {
@@ -222,10 +221,11 @@
             })
         });
         const result = await response.json();
-        console.log('result', result)
         if (response.status === 200 && result?.data?.access_token) {
             document.cookie = 'access-token-unsecure=' + result.data.access_token
             window.location.replace('/')
+        } else if (result.code === 500) {
+            vt.error(result.msg)
         }
     }
     const loginBtn = document.getElementById("loginbtn");
