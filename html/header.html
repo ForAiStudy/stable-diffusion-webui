@@ -48,11 +48,12 @@
     }
 
     .operations {
+        cursor: pointer;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        width: 220px;
+        width: 260px;
     }
 
 
@@ -87,6 +88,7 @@
     }
 
     .h5-operations {
+        cursor: pointer;
         box-sizing: border-box;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -139,7 +141,12 @@
     <div class="operations">
         <span style="color: #ffffff">使用说明书</span>
         <span style="color: #ffffff">作画记录</span>
-        <span style="color: #ffffff" class="">可制作</span>
+        <div>
+            <span style="color: #FF7500">做画张数</span>
+            <span id="usedCount" style="color: #FF7500" class="">*</span>
+            <span style="color: #FF7500" class="">/</span>
+            <span id="totalCount" style="color: #FF7500" class="">*</span>
+        </div>
     </div>
 </div>
 
@@ -182,6 +189,11 @@
 
     <div class="use-times">
         <div class="dot"></div>
-        <span>可制作</span>
+        <div>
+            <span style="color: #FF7500">做画张数</span>
+            <span id="usedCount" style="color: #FF7500" class="">*</span>
+            <span style="color: #FF7500" class="">/</span>
+            <span id="totalCount" style="color: #FF7500" class="">*</span>
+        </div>
     </div>
 </div>

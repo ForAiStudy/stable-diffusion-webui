@@ -1719,7 +1719,15 @@ def create_ui():
                         mode: 'cors',
                         credentials: 'include', 
                 });
-                const result = response.json();
+                try {
+                    const result = response.json();
+                    const { totalCount, usedCount } = result;
+                    document.getElementById('usedCount').innerHTML = `${usedCount}`;
+                    document.getElementById('totalCount').innerHTML = `${totalCount}`;
+                } catch (error) {
+                    console.error(error);
+                }
+                
             }
         """
 
