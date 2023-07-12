@@ -1713,6 +1713,11 @@ def create_ui():
         # footer = footer.format(versions=versions_html(), api_docs="/docs" if shared.cmd_opts.api else "https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/API")
         gr.HTML(footer, elem_id="custom-footer")
         onload_scripts = """
+            function onLoad() {
+                const script = document.createElement('script');
+                script.innerHTML = "function wip(){window.vt.info('功能开发中，很快就会上线啦~')}";
+                document.head.appendChild(script);   
+
                 function queryUseTimes() {
                     setInterval(async function() {
                         const response = await fetch('/sys/user/getUseCount', 
@@ -1730,7 +1735,10 @@ def create_ui():
                         }
                     }, 2000); // 每2秒执行一次
                 }
-            """
+                queryUseTimes();
+            }
+            
+        """
 
         text_settings = gr.Textbox(elem_id="settings_json", value=lambda: opts.dumpjson(), visible=False)
         settings_submit.click(
