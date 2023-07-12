@@ -1728,7 +1728,7 @@ def create_ui():
                         try {
                             const result = await response.json();
                             const { totalCount, usedCount } = result.data;
-                            document.getElementById('usedCount').innerHTML = `${usedCount}`;
+                            document.getElementById('usedCount').innerHTML = `${usedCount > totalCount? totalCount: usedCount}`;
                             document.getElementById('totalCount').innerHTML = `${totalCount}`;
                         } catch (error) {
                             console.error(error);
