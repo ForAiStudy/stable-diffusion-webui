@@ -71,7 +71,9 @@ def progressapi(req: ProgressRequest):
     completed = req.id_task in finished_tasks
 
     if not active:
-        return ProgressResponse(active=active, queued=queued, completed=completed, id_live_preview=-1, textinfo="In queue..." if queued else "Waiting...")
+        queue_length = len(pending_tasks)
+        textinfo = "In queue..." if queued else f"前面还有{queue_length}个小伙伴在排队，马上就能为您生成图片了"
+        return ProgressResponse(active=active, queued=queued, completed=completed, id_live_preview=-1, textinfo=textinfo)
 
     progress = 0
 
