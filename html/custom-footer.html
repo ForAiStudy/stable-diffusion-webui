@@ -4,7 +4,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 60px;
+        margin-top: 20px;
     }
 
     @media (min-width: 768px) {
@@ -72,6 +72,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-top: 20px;
     }
 
     @media (min-width: 768px) {
@@ -122,7 +123,61 @@
         border-top: 1px solid #bfdbfe80;
         padding-top: 20px;
     }
+
+    .qas {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .qa-container {
+        padding: 20px;
+        border: 1px solid #FFFFFF;
+        border-radius: 4px;
+    }
+
+    .question {
+        font-weight: 500;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .answer {
+        color: #9ca3af !important;
+    }
+
+    .qa-item {
+        margin-bottom: 20px;
+    }
 </style>
+
+<div class="qas">
+    <div class="qa-container">
+        <div class="qa-item">
+            <div class="question">Q: 为什么当图片尺寸非常大的时候，会生成失败呢？</div>
+            <div class="answer">A: 生成的图片越大，占用的算力资源越多。由于您购买的是尝鲜版，单个用户的算力有限。建议你：首先可以按照默认比例（512*512）生成图片，后续使用高清化功能将此图片放大即可。
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">Q: 为什么我在生成图片时，会一直展示排队状态呢？</div>
+            <div class="answer">A: 由于使用尝鲜版的用户太多，请您耐心等待。若您中途退出，也可稍后在【作画记录】里查看生成图片。如果讨厌排队，请扫描下方的微信二维码，联系我们，为您开通专属算力通道。
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">Q: 我想使用SD云平台训练专属风格的 LORA 模型或者人物，要怎么做呢？</div>
+            <div class="answer">A: 训练 LORA 模型，需要更多的算力支持。请扫描下方的微信二维码，联系我们，为您开通高阶版SD云平台。</div>
+        </div>
+
+        <div class="qa-item">
+            <div class="question">Q: 我有生成同样类型图片的诉求（使用同样的大模型和LORA），但每次需要手动操作写提示词或者传图片太麻烦，你们有自动化的方案可以帮我吗？</div>
+            <div class="answer">A: 当然有啦！我们有专业AI开发技术团队。请扫描下方的微信二维码，联系我们，开启专属定制化服务！</div>
+        </div>
+    </div>
+</div>
+
 
 <div class="custom-footer-container">
     <div class="custom-footer">
