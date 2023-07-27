@@ -1670,13 +1670,15 @@ def create_ui():
         shared.tab_names.append(label)
 
     css = """
-        .tabs {min-height: calc(100vh - 380px) !important}
     """
 
     with gr.Blocks(theme=shared.gradio_theme, analytics_enabled=False, title="真奇妙", css=css) as demo:
        
         header = shared.html("header.html")
         gr.HTML(header, elem_id="header")
+
+        useRecords = shared.html("records.html")
+        gr.HTML(useRecords, elem_id="useRecordsPage")
        
         with gr.Row(elem_id="quicksettings", variant="compact"):
             for _i, k, _item in sorted(quicksettings_list, key=lambda x: quicksettings_names.get(x[1], x[0])):
@@ -1714,9 +1716,9 @@ def create_ui():
         gr.HTML(footer, elem_id="custom-footer")
         onload_scripts = """
             function onLoad() {
-                const script = document.createElement('script');
-                script.innerHTML = "function wip(){window.vt.info('功能开发中，很快就会上线啦~')}";
-                document.head.appendChild(script);   
+                const showWipToastScript = document.createElement('script');
+                showWipToastScript.innerHTML = "function wip(){window.vt.info('功能开发中，很快就会上线啦~')}";
+                document.head.appendChild(showWipToastScript);   
 
                 function queryUseTimes() {
                     setInterval(async function() {
@@ -1737,7 +1739,6 @@ def create_ui():
                 }
                 queryUseTimes();
             }
-            
         """
 
         text_settings = gr.Textbox(elem_id="settings_json", value=lambda: opts.dumpjson(), visible=False)
