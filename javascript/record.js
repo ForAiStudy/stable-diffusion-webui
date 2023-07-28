@@ -68,7 +68,7 @@ function getSdValues(detail) {
     const data = JSON.parse(detail.prompt);
     const infotext = data.infotexts[0];
     const infos = infotext.split(',');
-    const { cfg_scale, sampler_name, steps, prompt } = data;
+    const {cfg_scale, sampler_name, steps, prompt} = data;
     const sdData = {};
     infos.forEach(item => {
         const [sdKey, sdValue] = item.trim().split(':');
@@ -125,7 +125,7 @@ function addRecordsDom(records) {
 
     for (let i = 0; i < records.length; i++) {
         const recordItem = records[i];
-        const { id, imgUrl } = recordItem;
+        const {id, imgUrl} = recordItem;
         const imgItem = document.createElement('img');
 
         imgItem.src = imgUrl;
@@ -167,11 +167,45 @@ async function queryRecords(page = 1) {
     return result.data;
 }
 
+/**
+ * navigator.clipboard.writeText 在一些环境下可能无法工作。特别是，在一些旧的浏览器或在非安全（非HTTPS）的上下文中，这个API可能无法使用。这也是为什么我们需要一个后备方案的原因。
+ *
+ * document.execCommand('copy') 这个旧式的API也有它自己的局限。一些浏览器可能需要用户在复制操作发生时是处于激活状态（即，复制操作被触发是由用户的直接动作，如点击一个按钮，而非由其他脚本调用的结果）。如果不满足这个条件，复制操作可能会失败。
+ * @returns {Promise<void>}
+ */
 async function copyPrompt() {
-    const promptEle = document.getElementById('sd-prompt');
-    console.log('prompt', promptEle.innerHTML);
-    await navigator.clipboard.writeText(promptEle.innerHTML);
-    window.vt.info('复制成功');
+    try {
+        const promptEle = document.getElementById('sd-prompt');
+        console.log('prompt', promptEle.innerHTML);
+        await navigator.clipboard.writeText(promptEle.innerHTML);
+        window.vt.info('复制成功');
+    } catch (e) {
+        console.log(e)
+        const promptEle = document.getElementById('sd-prompt');
+        console.log('prompt', promptEle.innerHTML);
+
+        var textArea = document.createElement("textarea");
+        textArea.value = promptEle.innerHTML;
+        textArea.style.position = 'fixed';  // 将textarea定位到固定位置
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        var copyInfo = document.querySelector('.record-detail-prompt-copy'); // 根据你的class选择元素
+        try {
+            var successful = document.execCommand('copy');
+            if (successful) {
+                copyInfo.classList.add("record-detail-prompt-copy-gray");
+                setTimeout(function () {
+                    copyInfo.classList.remove("record-detail-prompt-copy-gray");
+                }, 500); // 延时500毫秒后移除CSS类
+            }
+        } catch (err) {
+            console.error('复制失败', err);
+        }
+
+        document.body.removeChild(textArea);
+    }
 }
 
 function closeDetailModal() {
@@ -186,7 +220,7 @@ function closeDetailModal() {
 }
 
 async function loadMoreRecords() {
-    const { curPage, records } = window.useRecordsData;
+    const {curPage, records} = window.useRecordsData;
     if (!curPage || curPage == 1) {
         // 打开作画记录页面时会触发loadmore, 再这个地方特殊处理一下
         return;
