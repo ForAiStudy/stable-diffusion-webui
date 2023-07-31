@@ -28,6 +28,10 @@ function cancelObserveScroll() {
 async function showUseRecords() {
 
     const recordsActiveTag = document.getElementsByClassName('record-active')[0];
+    if (recordsActiveTag.style.display === 'block') {
+        return
+    }
+
     recordsActiveTag.style.display = 'block';
 
     const records = await queryRecords();
@@ -68,7 +72,7 @@ function getSdValues(detail) {
     const data = JSON.parse(detail.prompt);
     const infotext = data.infotexts[0];
     const infos = infotext.split(',');
-    const {cfg_scale, sampler_name, steps, prompt} = data;
+    const { cfg_scale, sampler_name, steps, prompt } = data;
     const sdData = {};
     infos.forEach(item => {
         const [sdKey, sdValue] = item.trim().split(':');
@@ -125,7 +129,7 @@ function addRecordsDom(records) {
 
     for (let i = 0; i < records.length; i++) {
         const recordItem = records[i];
-        const {id, imgUrl} = recordItem;
+        const { id, imgUrl } = recordItem;
         const imgItem = document.createElement('img');
 
         imgItem.src = imgUrl;
@@ -176,13 +180,10 @@ async function queryRecords(page = 1) {
 async function copyPrompt() {
     try {
         const promptEle = document.getElementById('sd-prompt');
-        console.log('prompt', promptEle.innerHTML);
         await navigator.clipboard.writeText(promptEle.innerHTML);
         window.vt.info('复制成功');
     } catch (e) {
-        console.log(e)
         const promptEle = document.getElementById('sd-prompt');
-        console.log('prompt', promptEle.innerHTML);
 
         var textArea = document.createElement("textarea");
         textArea.value = promptEle.innerHTML;
@@ -220,7 +221,7 @@ function closeDetailModal() {
 }
 
 async function loadMoreRecords() {
-    const {curPage, records} = window.useRecordsData;
+    const { curPage, records } = window.useRecordsData;
     if (!curPage || curPage == 1) {
         // 打开作画记录页面时会触发loadmore, 再这个地方特殊处理一下
         return;
@@ -264,11 +265,27 @@ function closeUseRecords() {
     cancelObserveScroll();
 }
 
+async function downloadImage() {
+    const imageSrc = document.getElementById('sd-imgurl').src;
+    console.log('imageSrc', imageSrc)
+    const image = await fetch(imageSrc);
+    const imageBlob = await image.blob();
+    const imageURL = URL.createObjectURL(imageBlob);
+    const imageName = imageSrc.split('/').pop();
+
+    const link = document.createElement('a');
+    link.href = imageURL;
+    link.download = imageName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     window.showUseRecords = showUseRecords;
     window.closeDetailModal = closeDetailModal;
     window.copyPrompt = copyPrompt;
     window.closeUseRecords = closeUseRecords;
+    window.downloadImage = downloadImage;
 })
 
